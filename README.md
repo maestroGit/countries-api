@@ -1,8 +1,7 @@
-# Frontend Mentor - REST Countries API with color theme switcher
+# vanillaJS - REST Countries API with color theme switcher
 
-Petición de datos json con fetch a un directorio local y amplición de datos con petición fetch API con parámetro recibido en la url.
 
-Pendiente de ver Apertura de ventana Modal
+https://maestrogit.github.io/countries-api/index.html
 
 
 ![Design preview for the REST Countries API with color theme switcher coding challenge](./design/desktop-preview.jpg)
@@ -82,3 +81,8 @@ Tutoriales:
 # https://www.youtube.com/watch?v=uIj8wbvxZIk
 # https://youtu.be/TLKQacsLroo
 # https://www.youtube.com/watch?v=03BIqJkc9Kk
+
+Notas:
+Petición de todos los datos (json) con fetch a un directorio local y posteriormente, la seeción individula de un país se amplían los datos con una petición fetch a la API mediante el parámetro recibido en la url.
+
+Pendiente de ver Apertura de ventana Modal.
