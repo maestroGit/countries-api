@@ -31,14 +31,16 @@ const showCountries = async function showCountries(countries) {
   countryCard.innerHTML = "";
   countries.forEach((country) => {
     //console.log(country);
-    //Create <div>
+    //Create <div> 
     const countryElement = document.createElement("div");
+    // Prevent 'N/A' from API response
+    const imgSrc = country.flag === '' | 'N/A' ? 'https://search.un.org/templates/default/images/logo.png' : country.flag;
     //Define style
     countryElement.classList.add("card");
     //Show it
     countryElement.innerHTML = `
             <div class="flag">
-            <img src="${country.flag}" alt="" />
+            <img src="${imgSrc}" alt="" />
             </div>
                 <div class="card-content">
                 <h3>${country.name}</h3>
