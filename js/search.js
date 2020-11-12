@@ -1,6 +1,10 @@
 const formSearch = document.getElementById('formSearch');
 const inputForm = document.getElementById('inputTexto');
 
+function blurInput() {
+    document.getElementById('inputTexto').blur();
+  }
+
 const searchData = data => {
     formSearch.addEventListener('keyup',e => {
         e.preventDefault()
@@ -18,5 +22,6 @@ const searchData = data => {
         })
         //console.log(arrayMatchInputValue);
         showCountries(arrayMatchInputValue);
+        setTimeout(blurInput, 4000);
     })
 }
