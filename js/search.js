@@ -2,7 +2,6 @@ const formSearch = document.getElementById("formSearch");
 const inputForm = document.getElementById("inputTexto");
 const device = navigator.userAgent;
 
-
 // function blurInput() {
 //   document.getElementById("inputTexto").blur();
 // }
@@ -22,8 +21,9 @@ const searchData = (data) => {
         return elements;
       }
     });
-    
+
     showCountries(arrayMatchInputValue);
+
     if (
       device.match(/Android/i) ||
       device.match(/webOS/i) ||
@@ -31,7 +31,16 @@ const searchData = (data) => {
       device.match(/iPod/i) ||
       device.match(/iPad/i)
     ) {
-      inputForm.autocomplete="off";
+      inputForm.autocomplete = "off";
+      // Evitar reload del enter en buscador
+      formSearch.addEventListener("keydown", (e) => {
+        let keyCode = e.key;
+        //console.log(keyCode, typeof keyCode);
+        if (keyCode === "Enter") {
+          // Evitamos que se ejecute eventos
+          e.preventDefault();
+        }
+      });
       //setTimeout(blurInput, 4000); Solución rocambolesca, I think so!
     }
   });
