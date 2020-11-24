@@ -2,9 +2,10 @@ const formSearch = document.getElementById("formSearch");
 const inputForm = document.getElementById("inputTexto");
 const device = navigator.userAgent;
 
-function blurInput() {
-  document.getElementById("inputTexto").blur();
-}
+
+// function blurInput() {
+//   document.getElementById("inputTexto").blur();
+// }
 
 const searchData = (data) => {
   formSearch.addEventListener("keyup", (e) => {
@@ -30,7 +31,8 @@ const searchData = (data) => {
       device.match(/iPod/i) ||
       device.match(/iPad/i)
     ) {
-      setTimeout(blurInput, 4000);
+      inputForm.autocomplete="off";
+      //setTimeout(blurInput, 4000); Solución rocambolesca, I think so!
     }
   });
 };
