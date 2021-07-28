@@ -62,16 +62,20 @@ const showCountries = async function showCountries(countries) {
     countryCard.appendChild(countryElement);
 
     countryElement.addEventListener('click',()=>{
-      selectOneCountry()
+      selectOneCountry(countryElement)
     })
   });
 }
 
 
 
-function selectOneCountry() {
+function selectOneCountry(countryElement) {
    console.log('Pendiente como crear una ventana Modal o cargar selection.html');
-}
+  //Create <div> Pendiente class
+  const countrySoloEl = document.createElement("div");
+  countrySoloEl.appendChild(countryElement);
+  
+  }
 
 
 
