@@ -1,8 +1,8 @@
 const countryCard = document.getElementById("countryCard");
 
-window.addEventListener('load', function(event) {
-    getData();
-    // diferencia 'load' y 'DomContentLoaded'
+window.addEventListener("load", function (event) {
+  getData();
+  // diferencia 'load' y 'DomContentLoaded'
 });
 
 //There are multiple ways to send a network request and get information from the server.
@@ -16,25 +16,28 @@ window.addEventListener('load', function(event) {
 const getData = async function getData() {
   const url = "https://restcountries.eu/rest/v2/all";
   const urlLocal = "./data/api.json";
-  let response = await fetch(urlLocal);//datos consumiendo api o api.json directos desde repositorio local
+  let response = await fetch(urlLocal); //datos consumiendo api o api.json directos desde repositorio local
   if (response.ok) {
     const data = await response.json(); // read response body and parse as JSON
     showCountries(data);
     searchData(data);
-    selectRegion(data);//We send data from selectRegion to have acces in custom-select.js
+    selectRegion(data); //We send data from selectRegion to have acces in custom-select.js
   } else {
     alert("HTTP-error" + response.status);
   }
-}
+};
 
 const showCountries = async function showCountries(countries) {
   countryCard.innerHTML = "";
   countries.forEach((country) => {
     //console.log(country);
-    //Create <div> 
+    //Create <div>
     const countryElement = document.createElement("div");
     // Prevent 'N/A' from API response
-    const imgSrc = country.flag === '' | 'N/A' ? 'https://search.un.org/templates/default/images/logo.png' : country.flag;
+    const imgSrc =
+      (country.flag === "") | "N/A"
+        ? "https://search.un.org/templates/default/images/logo.png"
+        : country.flag;
     //Define style
     countryElement.classList.add("card");
     //Show it
@@ -61,22 +64,25 @@ const showCountries = async function showCountries(countries) {
             `;
     countryCard.appendChild(countryElement);
 
-    countryElement.addEventListener('click',()=>{
-      selectOneCountry(countryElement)
-    })
+    
   });
-}
 
-
-
-function selectOneCountry(countryElement) {
-   console.log('Pendiente como crear una ventana Modal o cargar selection.html');
-  //Create <div> Pendiente class
-  const countrySoloEl = document.createElement("div");
-  countrySoloEl.appendChild(countryElement);
-  
+  // Añadir listener en los flag
+  const cardFlag = document.getElementsByClassName("flag");
+  console.log(cardFlag.length);
+  for (i = 0; i < cardFlag.length; i++) {
+    cardFlag[i].setAttribute('id',i);
+    cardFlag[i].addEventListener("click",selectOneCountry);
   }
 
+};
 
-
-
+function selectOneCountry() {
+  console.log("Pendiente como crear una ventana Modal o cargar selection.html");
+  const id = this.getAttribute('id');
+  console.log(id);
+  console.log(this);
+  //Create <div> Pendiente class
+  const countrySoloEl = document.createElement("div");
+  
+}
