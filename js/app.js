@@ -1,8 +1,8 @@
 const countryCard = document.getElementById("countryCard");
 
-window.addEventListener("load", function (event) {
-  getData();
-  // diferencia 'load' y 'DomContentLoaded'
+window.addEventListener("load", function(event) {
+    getData();
+    // diferencia 'load' y 'DomContentLoaded'
 });
 
 //There are multiple ways to send a network request and get information from the server.
@@ -14,34 +14,34 @@ window.addEventListener("load", function (event) {
 //ok – boolean, true if the HTTP status code is 200-299.
 
 const getData = async function getData() {
-  const url = "https://restcountries.eu/rest/v2/all";
-  const urlLocal = "./data/api.json";
-  let response = await fetch(urlLocal); //datos consumiendo api o api.json directos desde repositorio local
-  if (response.ok) {
-    const data = await response.json(); // read response body and parse as JSON
-    showCountries(data);
-    searchData(data);
-    selectRegion(data); //We send data from selectRegion to have acces in custom-select.js
-  } else {
-    alert("HTTP-error" + response.status);
-  }
+    const url = "https://restcountries.com/v3.1/all";
+    const urlLocal = "./data/api.json";
+    let response = await fetch(url); //datos consumiendo api o api.json directos desde repositorio local
+    if (response.ok) {
+        const data = await response.json(); // read response body and parse as JSON
+        showCountries(data);
+        searchData(data);
+        selectRegion(data); //We send data from selectRegion to have acces in custom-select.js
+    } else {
+        alert("HTTP-error" + response.status);
+    }
 };
 
 const showCountries = async function showCountries(countries) {
-  countryCard.innerHTML = "";
-  countries.forEach((country) => {
-    //console.log(country);
-    //Create <div>
-    const countryElement = document.createElement("div");
-    // Prevent 'N/A' from API response
-    const imgSrc =
-      (country.flag === "") | "N/A"
-        ? "https://search.un.org/templates/default/images/logo.png"
-        : country.flag;
-    //Define style
-    countryElement.classList.add("card");
-    //Show it
-    countryElement.innerHTML = `
+    countryCard.innerHTML = "";
+    countries.forEach((country) => {
+        //console.log(country);
+        //Create <div>
+        const countryElement = document.createElement("div");
+        // Prevent 'N/A' from API response
+        const imgSrc =
+            (country.flag === "") | "N/A" ?
+            "https://search.un.org/templates/default/images/logo.png" :
+            country.flag;
+        //Define style
+        countryElement.classList.add("card");
+        //Show it
+        countryElement.innerHTML = `
             <div class="flag">
             <img src="${imgSrc}" alt="" />
             </div>
@@ -62,27 +62,27 @@ const showCountries = async function showCountries(countries) {
                     <p><a href="selection.html?paramname=${country.name}">${country.name}</a></p>
                     </div>
             `;
-    countryCard.appendChild(countryElement);
+        countryCard.appendChild(countryElement);
 
-    
-  });
 
-  // Añadir listener en los flag
-  const cardFlag = document.getElementsByClassName("flag");
-  console.log(cardFlag.length);
-  for (i = 0; i < cardFlag.length; i++) {
-    cardFlag[i].setAttribute('id',i);
-    cardFlag[i].addEventListener("click",selectOneCountry);
-  }
+    });
+
+    // Añadir listener en los flag
+    const cardFlag = document.getElementsByClassName("flag");
+    console.log(cardFlag.length);
+    for (i = 0; i < cardFlag.length; i++) {
+        cardFlag[i].setAttribute('id', i);
+        cardFlag[i].addEventListener("click", selectOneCountry);
+    }
 
 };
 
 function selectOneCountry() {
-  console.log("Pendiente como crear una ventana Modal o cargar selection.html");
-  const id = this.getAttribute('id');
-  console.log(id);
-  console.log(this);
-  //Create <div> Pendiente class
-  const countrySoloEl = document.createElement("div");
-  
+    console.log("Pendiente como crear una ventana Modal o cargar selection.html");
+    const id = this.getAttribute('id');
+    console.log(id);
+    console.log(this);
+    //Create <div> Pendiente class
+    const countrySoloEl = document.createElement("div");
+
 }
